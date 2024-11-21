@@ -146,6 +146,10 @@ function App() {
     setNotification("");
   };
 
+  const closeShowResult = () => {
+    setShowResult("");
+  };
+
   return (
     <div>
       <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
@@ -210,9 +214,9 @@ function App() {
         </div>
       )}
       {showResult && (
-        <div className="notification">
+        <div className="show-result">
           <span>{showResult}</span>
-          <button className="close-button" onClick={closeNotification}>[X]</button>
+          <button className="close-button" onClick={closeShowResult}>[X]</button>
         </div>
       )}
     </div>
