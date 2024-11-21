@@ -209,7 +209,12 @@ function App() {
           <button className="close-button" onClick={closeNotification}>[X]</button>
         </div>
       )}
-      {showResult && <p className="show-result">{showResult}</p>}
+      {showResult && (
+        <div className="notification">
+          <span>{showResult}</span>
+          <button className="close-button" onClick={closeNotification}>[X]</button>
+        </div>
+      )}
     </div>
   );
 }
