@@ -165,22 +165,13 @@ function App() {
       ))}
       <div className="queue-container">
         <h3>Antrian:</h3>
-        <table className="queue-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>ID Tombol</th>
-            </tr>
-          </thead>
-          <tbody>
-            {queue.map((buttonId, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{buttonId}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="queue-boxes">
+          {queue.map((buttonId, index) => (
+            <div key={index} className="queue-box">
+              {buttonId}
+            </div>
+          ))}
+        </div>
       </div>
 
       <form onSubmit={handleFormSubmit} className="form">
