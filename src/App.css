@@ -106,9 +106,36 @@ label input[type="checkbox"] {
   background-color: #444;
   color: #fff;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top: 20px;
-  animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 1s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.notification span {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.2);
 }
 
 @keyframes fadeIn {
@@ -125,6 +152,17 @@ label input[type="checkbox"] {
     opacity: 1;
   }
   to {
+    opacity: 0;
+  }
+}
+
+@keyframes shatter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotate(90deg);
     opacity: 0;
   }
 }
