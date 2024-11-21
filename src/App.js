@@ -130,6 +130,18 @@ function App() {
     }
   };
 
+  const resetClick = async () => {
+    try {
+      const url = `https://due-ibby-individual-65-cb3662a6.koyeb.app/lockfile.php?reset=yes`;
+      const response = await fetch(url);
+      const data = await response.text();
+      setShowResult(data);
+    } catch (error) {
+      console.error("Error fetching current results:", error);
+      setNotification("Gagal menampilkan hasil.");
+    }
+  };
+
   return (
     <div>
       <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
@@ -194,6 +206,7 @@ function App() {
         />
         <button type="submit" className="form-button">Gas</button>
         <button type="button" className="form-button" onClick={handleShowClick}>Show</button>
+        <button type="button" className="form-button" onClick={resetClick}>Reset</button>
       </form>
       {notification && <p className="notification">{notification}</p>}
       {showResult && <p className="show-result">{showResult}</p>}
