@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import { handleButtonClick, handleFormSubmit, handleShowClick, resetClick, fetchLockStatus } from './utils';
+import { LOCK_STATUS_URL, SHOW_APEL_URL, RESET_URL } from './constants';
 
 function App() {
   const [queue, setQueue] = useState([]);
@@ -11,135 +12,29 @@ function App() {
   const [email, setEmail] = useState("");
   const [notification, setNotification] = useState("");
   const [showResult, setShowResult] = useState("");
-
-  const handleButtonClick = async (buttonId) => {
-    if (queue.includes(buttonId)) {
-      console.log(`Tombol ${buttonId} sudah ada dalam antrian`);
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://due-ibby-individual-65-cb3662a6.koyeb.app/lockfile.php?cek=yes"
-      );
-      const data = await response.text();
-      const isLocked = data === "1";
-
-      if (isLocked) {
-        setQueue((prevQueue) => [...prevQueue, buttonId]);
-      } else {
-        const urlParams = new URLSearchParams({
-          urutan: buttonId,
-          apel: isAppleEnabled ? "yes" : "no",
-        });
-        const url = `http://47.128.237.174/mandalorian/${selectedUrl}?${urlParams.toString()}`;
-        console.log(`Membuka website untuk tombol ${buttonId}`);
-        window.open(url, "_blank");
-      }
-    } catch (error) {
-      console.error("Error fetching lock status:", error);
-      setQueue((prevQueue) => [...prevQueue, buttonId]);
-    }
-  };
-
-  const processQueue = async () => {
-    if (queue.length === 0) return;
-
-    setIsProcessing(true);
-
-    try {
-      const currentButtonId = queue[0];
-
-      const response = await fetch(
-        "https://due-ibby-individual-65-cb3662a6.koyeb.app/lockfile.php?cek=yes"
-      );
-      const data = await response.text();
-      const isLocked = data === "1";
-
-      if (!isLocked) {
-        const urlParams = new URLSearchParams({
-          urutan: currentButtonId,
-          apel: isAppleEnabled ? "yes" : "no",
-        });
-        const url = `http://47.128.237.174/mandalorian/${selectedUrl}?${urlParams.toString()}`;
-
-        const hiddenElement = document.createElement("span");
-        document.body.appendChild(hiddenElement);
-        hiddenElement.addEventListener("click", () => {
-          window.open(url, "_blank");
-        });
-        hiddenElement.click();
-        document.body.removeChild(hiddenElement);
-
-        setQueue((prevQueue) => prevQueue.slice(1));
-      }
-    } catch (error) {
-      console.error("Error fetching lock status:", error);
-    } finally {
-      setIsProcessing(false);
-    }
-  };
+  const [lockStatus, setLockStatus] = useState(true);
 
   useEffect(() => {
-    let timeoutId;
+    const interval = setInterval(async () => {
+      await fetchLockStatus(setLockStatus);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-    if (!isProcessing && queue.length > 0) {
-      timeoutId = setTimeout(() => {
-        processQueue();
-      }, 5000);
-    }
-
-    return () => clearTimeout(timeoutId);
-  }, [queue, isProcessing]);
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const urlParams = new URLSearchParams({
-        nomor,
-        opsi,
-        apel: email,
-      });
-      const url = `https://due-ibby-individual-65-cb3662a6.koyeb.app/apel.php?${urlParams.toString()}`;
-      const response = await fetch(url);
-      if (response.ok) {
-        setNotification("Data meluncur...!");
-        setTimeout(() => setNotification(""), 1000); // Hide notification after 1 second
-      } else {
-        setNotification("Gagal menyimpan data.");
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      setNotification("Gagal menyimpan data.");
-    }
+  const handleButtonClickWrapper = async (buttonId) => {
+    await handleButtonClick(buttonId, queue, setQueue, isProcessing, setIsProcessing, lockStatus, setLockStatus, selectedUrl, isAppleEnabled);
   };
 
-  const handleShowClick = async () => {
-    try {
-      const urlParams = new URLSearchParams({
-        pasukan: nomor,
-        urutan: opsi,
-      });
-      const url = `https://due-ibby-individual-65-cb3662a6.koyeb.app/show_apel.php?${urlParams.toString()}`;
-      const response = await fetch(url);
-      const data = await response.text();
-      setShowResult(data);
-    } catch (error) {
-      console.error("Error fetching current results:", error);
-      setNotification("Gagal menampilkan hasil.");
-    }
+  const handleFormSubmitWrapper = async (e) => {
+    await handleFormSubmit(e, nomor, opsi, email, setNotification);
   };
 
-  const resetClick = async () => {
-    try {
-      const url = `https://due-ibby-individual-65-cb3662a6.koyeb.app/lockfile.php?reset=yes`;
-      const response = await fetch(url);
-      const data = await response.text();
-      setShowResult(data);
-    } catch (error) {
-      console.error("Error fetching current results:", error);
-      setNotification("Gagal menampilkan hasil.");
-    }
+  const handleShowClickWrapper = async () => {
+    await handleShowClick(nomor, opsi, setShowResult);
+  };
+
+  const resetClickWrapper = async () => {
+    await resetClick(setShowResult);
   };
 
   const closeNotification = () => {
@@ -167,7 +62,7 @@ function App() {
         APEL?
       </label>
       {[...Array(8)].map((_, index) => (
-        <button key={index} onClick={() => handleButtonClick(index + 1)}>
+        <button key={index} onClick={() => handleButtonClickWrapper(index + 1)}>
           Tombol {index + 1}
         </button>
       ))}
@@ -182,7 +77,7 @@ function App() {
         </div>
       </div>
 
-      <form onSubmit={handleFormSubmit} className="form">
+      <form onSubmit={handleFormSubmitWrapper} className="form">
         <select onChange={(e) => setNomor(e.target.value)} value={nomor} className="form-select">
           <option value="1">Pasukan 1</option>
           <option value="2">Pasukan 2</option>
@@ -200,23 +95,21 @@ function App() {
           placeholder="Tambah Email?"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
-          className="form-input"
         />
-        <button type="submit" className="form-button">Gas</button>
-        <button type="button" className="form-button" onClick={handleShowClick}>Show</button>
-        <button type="button" className="form-button" onClick={resetClick}>Reset</button>
+        <button type="submit">Kirim</button>
       </form>
+
       {notification && (
         <div className="notification">
           <span>{notification}</span>
-          <button className="close-button" onClick={closeNotification}>[X]</button>
+          <button onClick={closeNotification}>Tutup</button>
         </div>
       )}
+
       {showResult && (
         <div className="show-result">
           <span>{showResult}</span>
-          <button className="close-button" onClick={closeShowResult}>[X]</button>
+          <button onClick={closeShowResult}>Tutup</button>
         </div>
       )}
     </div>

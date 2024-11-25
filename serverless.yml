@@ -1,0 +1,15 @@
+service:
+  name: ngantri
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-southeast-1
+
+functions:
+  index:
+    handler: index.handler
+    events:
+      - http:
+          path: /
+          method: get
