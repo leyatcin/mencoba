@@ -45,7 +45,7 @@ export const handleFormSubmit = async (e, nomor, opsi, email, setNotification) =
       setNotification("Gagal menyimpan data.");
     }
   } catch (error) {
-    console.error("Error mengirimkan data:", error);
+    console.error("Error mengirimkaan data:", error);
     setNotification("Gagal menyimpan data.");
   }
 };
