@@ -28,10 +28,12 @@ function App() {
     await handleFormSubmit(e, nomor, opsi, email, setNotification);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleShowClickWrapper = async () => {
     await handleShowClick(nomor, opsi, setShowResult);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const resetClickWrapper = async () => {
     await resetClick(setShowResult);
   };
