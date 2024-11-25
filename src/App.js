@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { handleButtonClick, handleFormSubmit, handleShowClick, resetClick, fetchLockStatus } from './utils';
-import { LOCK_STATUS_URL, SHOW_APEL_URL, RESET_URL } from './constants';
 
 function App() {
   const [queue, setQueue] = useState([]);
