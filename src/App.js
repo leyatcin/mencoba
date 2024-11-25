@@ -92,9 +92,6 @@ function App() {
     return () => clearTimeout(timeoutId);
   }, [queue, isProcessing, processQueue]);
 
-    return () => clearTimeout(timeoutId);
-  }, [queue, isProcessing]);
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
