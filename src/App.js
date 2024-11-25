@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from 'react';
 import { handleButtonClick, handleFormSubmit, handleShowClick, resetClick, fetchLockStatus } from './utils';
 
