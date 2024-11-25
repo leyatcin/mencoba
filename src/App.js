@@ -82,12 +82,15 @@ function App() {
 
   useEffect(() => {
     let timeoutId;
-
+  
     if (!isProcessing && queue.length > 0) {
       timeoutId = setTimeout(() => {
         processQueue();
       }, 5000);
     }
+  
+    return () => clearTimeout(timeoutId);
+  }, [queue, isProcessing, processQueue]);
 
     return () => clearTimeout(timeoutId);
   }, [queue, isProcessing]);
