@@ -42,27 +42,27 @@ function App() {
     }
   };
 
-  const processQueue = async () => {
+  const processQueue = useCallback(async () => {
     if (queue.length === 0) return;
-
+  
     setIsProcessing(true);
-
+  
     try {
       const currentButtonId = queue[0];
-
+  
       const response = await fetch(
         "https://due-ibby-individual-65-cb3662a6.koyeb.app/lockfile.php?cek=yes"
       );
       const data = await response.text();
       const isLocked = data === "1";
-
+  
       if (!isLocked) {
         const urlParams = new URLSearchParams({
           urutan: currentButtonId,
           apel: isAppleEnabled ? "yes" : "no",
         });
         const url = `http://47.128.237.174/mandalorian/${selectedUrl}?${urlParams.toString()}`;
-
+  
         const hiddenElement = document.createElement("span");
         document.body.appendChild(hiddenElement);
         hiddenElement.addEventListener("click", () => {
@@ -70,7 +70,7 @@ function App() {
         });
         hiddenElement.click();
         document.body.removeChild(hiddenElement);
-
+  
         setQueue((prevQueue) => prevQueue.slice(1));
       }
     } catch (error) {
@@ -78,7 +78,7 @@ function App() {
     } finally {
       setIsProcessing(false);
     }
-  };
+  }, [queue, isProcessing, selectedUrl, isAppleEnabled, setIsProcessing, setQueue]);
 
   useEffect(() => {
     let timeoutId;
