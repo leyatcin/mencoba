@@ -152,27 +152,32 @@ function App() {
 
   return (
     <div>
-      <div className="app-container">
-        <div className="top-controls">
-          <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
-            <option value="luciurl.php">luciurl.php</option>
-            <option value="luciurl2.php">luciurl2.php</option>
-            <option value="luciurl3.php">luciurl3.php</option>
-          </select>
-          <label className="checkbox-label">
-            <input
-            type="checkbox"
-            checked={isAppleEnabled}
-            onChange={(e) => setIsAppleEnabled(e.target.checked)}
-            />
-            [A]
-          </label>
-        </div>
-        <div className="button-container">
-          {[...Array(8)].map((_, index) => (
-            <button key={index} onClick={() => handleButtonClick(index + 1)}>
-              Tombol {index + 1}
-              </button>
+      <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
+        <option value="luciurl.php">luciurl.php</option>
+        <option value="luciurl2.php">luciurl2.php</option>
+        <option value="luciurl3.php">luciurl3.php</option>
+      </select>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          checked={isAppleEnabled}
+          onChange={(e) => setIsAppleEnabled(e.target.checked)}
+        />
+        APEL?
+      </label>
+      {[...Array(8)].map((_, index) => (
+        <button key={index} onClick={() => handleButtonClick(index + 1)}>
+          Tombol {index + 1}
+        </button>
+      ))}
+      <div className="queue-container">
+        <h3>Antrian:</h3>
+        <div className="queue-boxes">
+          {queue.map((buttonId, index) => (
+            <div key={index} className="queue-box">
+              {buttonId}
+            </div>
           ))}
         </div>
       </div>

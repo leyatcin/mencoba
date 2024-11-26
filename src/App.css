@@ -221,34 +221,3 @@ label input[type="checkbox"] {
     transform: translate(-50%, 0);
   }
 }
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 20px;
-}
-
-.top-controls {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.form-select {
-  margin-right: 20px;
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-}
-
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-button {
-  flex: 0 0 calc(25% - 10px);
-}
