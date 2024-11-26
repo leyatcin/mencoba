@@ -151,59 +151,26 @@ function App() {
   };
 
   return (
-    <div className="layout-container">
-      <div className="left-panel">
-        <select
-          onChange={(e) => setSelectedUrl(e.target.value)}
-          value={selectedUrl}
-          className="form-select form-item"
-        >
-          <option value="luciurl.php">luciurl.php</option>
-          <option value="luciurl2.php">luciurl2.php</option>
-          <option value="luciurl3.php">luciurl3.php</option>
-        </select>
-        <label className="form-item">
-          <input
-            type="checkbox"
-            checked={isAppleEnabled}
-            onChange={(e) => setIsAppleEnabled(e.target.checked)}
-            className="form-input"
-          />
-          APEL?
-        </label>
-        <form onSubmit={handleFormSubmit} className="form">
-          <select onChange={(e) => setNomor(e.target.value)} value={nomor} className="form-select form-item">
-            <option value="1">Pasukan 1</option>
-            <option value="2">Pasukan 2</option>
-            <option value="3">Pasukan 3</option>
-          </select>
-          <select onChange={(e) => setOpsi(e.target.value)} value={opsi} className="form-select form-item">
-            {[...Array(8)].map((_, index) => (
-              <option key={index} value={index + 1}>
-                {index + 1}
-              </option>
-            ))}
-          </select>
-          <input
-            type="text"
-            placeholder="Tambah Email?"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="form-input form-item"
-          />
-          <button type="submit" className="form-button form-item">Gas</button>
-          <button type="button" className="form-button form-item" onClick={handleShowClick}>Show</button>
-          <button type="button" className="form-button form-item" onClick={resetClick}>Reset</button>
-        </form>
-      </div>
-      <div className="right-panel">
-        {[...Array(8)].map((_, index) => (
-          <button key={index} onClick={() => handleButtonClick(index + 1)} className="form-button">
-            Tombol {index + 1}
-          </button>
-        ))}
-      </div>
+    <div>
+      <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
+        <option value="luciurl.php">luciurl.php</option>
+        <option value="luciurl2.php">luciurl2.php</option>
+        <option value="luciurl3.php">luciurl3.php</option>
+      </select>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          checked={isAppleEnabled}
+          onChange={(e) => setIsAppleEnabled(e.target.checked)}
+        />
+        APEL?
+      </label>
+      {[...Array(8)].map((_, index) => (
+        <button key={index} onClick={() => handleButtonClick(index + 1)}>
+          Tombol {index + 1}
+        </button>
+      ))}
       <div className="queue-container">
         <h3>Antrian:</h3>
         <div className="queue-boxes">
@@ -214,6 +181,32 @@ function App() {
           ))}
         </div>
       </div>
+
+      <form onSubmit={handleFormSubmit} className="form">
+        <select onChange={(e) => setNomor(e.target.value)} value={nomor} className="form-select">
+          <option value="1">Pasukan 1</option>
+          <option value="2">Pasukan 2</option>
+          <option value="3">Pasukan 3</option>
+        </select>
+        <select onChange={(e) => setOpsi(e.target.value)} value={opsi} className="form-select">
+          {[...Array(8)].map((_, index) => (
+            <option key={index} value={index + 1}>
+              {index + 1}
+            </option>
+          ))}
+        </select>
+        <input
+          type="text"
+          placeholder="Tambah Email?"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="form-input"
+        />
+        <button type="submit" className="form-button">Gas</button>
+        <button type="button" className="form-button" onClick={handleShowClick}>Show</button>
+        <button type="button" className="form-button" onClick={resetClick}>Reset</button>
+      </form>
       {notification && (
         <div className="notification">
           <span>{notification}</span>
