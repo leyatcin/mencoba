@@ -151,26 +151,29 @@ function App() {
   };
 
   return (
-    <div>
-      <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
-        <option value="luciurl.php">luciurl.php</option>
-        <option value="luciurl2.php">luciurl2.php</option>
-        <option value="luciurl3.php">luciurl3.php</option>
-      </select>
-      <br />
-      <label>
-        <input
-          type="checkbox"
-          checked={isAppleEnabled}
-          onChange={(e) => setIsAppleEnabled(e.target.checked)}
-        />
-        APEL?
-      </label>
-      {[...Array(8)].map((_, index) => (
-        <button key={index} onClick={() => handleButtonClick(index + 1)}>
-          Tombol {index + 1}
-        </button>
-      ))}
+    <div className="container">
+      <div className="controls">
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={isAppleEnabled}
+            onChange={(e) => setIsAppleEnabled(e.target.checked)}
+          />
+          APEL?
+        </label>
+        <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
+          <option value="luciurl.php">luciurl.php</option>
+          <option value="luciurl2.php">luciurl2.php</option>
+          <option value="luciurl3.php">luciurl3.php</option>
+        </select>
+      </div>
+      <div className="buttons">
+        {[...Array(8)].map((_, index) => (
+          <button key={index} onClick={() => handleButtonClick(index + 1)}>
+            Tombol {index + 1}
+          </button>
+        ))}
+      </div>
       <div className="queue-container">
         <h3>Antrian:</h3>
         <div className="queue-boxes">
@@ -181,7 +184,7 @@ function App() {
           ))}
         </div>
       </div>
-
+  
       <form onSubmit={handleFormSubmit} className="form">
         <select onChange={(e) => setNomor(e.target.value)} value={nomor} className="form-select">
           <option value="1">Pasukan 1</option>
@@ -220,7 +223,7 @@ function App() {
         </div>
       )}
     </div>
-  );
+  );  
 }
 
 export default App;
