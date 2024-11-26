@@ -196,7 +196,7 @@ label input[type="checkbox"] {
 .queue-boxes {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 5px;
 }
 
 .queue-box {
@@ -204,14 +204,14 @@ label input[type="checkbox"] {
   color: #000;
   border: 2px solid #000;
   border-radius: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 5px 10px;
+  font-size: 12px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .show-result {
