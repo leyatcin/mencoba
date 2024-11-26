@@ -175,7 +175,6 @@ function App() {
         </div>
       </div>
       <div className="queue-container">
-        <h3 className="fixed-header">Antrian:</h3>
         <div className="queue-boxes">
           {queue.map((buttonId, index) => (
             <div key={index} className="queue-box">

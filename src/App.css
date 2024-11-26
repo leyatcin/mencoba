@@ -195,16 +195,6 @@ label input[type="checkbox"] {
   position: relative;
 }
 
-.fixed-header {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #121212;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
 .queue-boxes {
   display: flex;
   flex-wrap: wrap;
