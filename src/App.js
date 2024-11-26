@@ -166,16 +166,16 @@ function App() {
           <option value="luciurl2.php">luciurl2.php</option>
           <option value="luciurl3.php">luciurl3.php</option>
         </select>
-      </div>
-      <div className="buttons">
-        {[...Array(8)].map((_, index) => (
-          <button key={index} onClick={() => handleButtonClick(index + 1)}>
-            Tombol {index + 1}
-          </button>
-        ))}
+        <div className="buttons">
+          {[...Array(8)].map((_, index) => (
+            <button key={index} onClick={() => handleButtonClick(index + 1)}>
+              Tombol {index + 1}
+            </button>
+          ))}
+        </div>
       </div>
       <div className="queue-container">
-        <h3>Antrian:</h3>
+        <h3 className="fixed-header">Antrian:</h3>
         <div className="queue-boxes">
           {queue.map((buttonId, index) => (
             <div key={index} className="queue-box">
@@ -223,7 +223,7 @@ function App() {
         </div>
       )}
     </div>
-  );  
+  );   
 }
 
 export default App;
