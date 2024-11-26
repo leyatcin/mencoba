@@ -152,6 +152,11 @@ function App() {
 
   return (
     <div className="container">
+      <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
+        <option value="luciurl.php">luciurl.php</option>
+        <option value="luciurl2.php">luciurl2.php</option>
+        <option value="luciurl3.php">luciurl3.php</option>
+      </select>
       <div className="controls">
         <label className="checkbox-label">
           <input
@@ -161,11 +166,6 @@ function App() {
           />
           APEL?
         </label>
-        <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
-          <option value="luciurl.php">luciurl.php</option>
-          <option value="luciurl2.php">luciurl2.php</option>
-          <option value="luciurl3.php">luciurl3.php</option>
-        </select>
         <div className="buttons">
           {[...Array(8)].map((_, index) => (
             <button key={index} onClick={() => handleButtonClick(index + 1)}>
@@ -223,7 +223,7 @@ function App() {
         </div>
       )}
     </div>
-  );   
+  );  
 }
 
 export default App;
