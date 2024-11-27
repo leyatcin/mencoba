@@ -169,7 +169,7 @@ function App() {
               checked={isAppleEnabled}
               onChange={(e) => setIsAppleEnabled(e.target.checked)}
             />
-            APEL?
+            [A]
           </label>
         </div>
         <div className="buttons">
