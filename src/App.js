@@ -153,23 +153,25 @@ function App() {
   return (
     <div className="container">
       <div className="controls">
-        <select
-          onChange={(e) => setSelectedUrl(e.target.value)}
-          value={selectedUrl}
-          className="form-select"
-        >
-          <option value="luciurl.php">luciurl.php</option>
-          <option value="luciurl2.php">luciurl2.php</option>
-          <option value="luciurl3.php">luciurl3.php</option>
-        </select>
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={isAppleEnabled}
-            onChange={(e) => setIsAppleEnabled(e.target.checked)}
-          />
-          APEL?
-        </label>
+        <div className="select-checkbox-wrapper">
+          <select
+            onChange={(e) => setSelectedUrl(e.target.value)}
+            value={selectedUrl}
+            className="form-select"
+          >
+            <option value="luciurl.php">luciurl.php</option>
+            <option value="luciurl2.php">luciurl2.php</option>
+            <option value="luciurl3.php">luciurl3.php</option>
+          </select>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={isAppleEnabled}
+              onChange={(e) => setIsAppleEnabled(e.target.checked)}
+            />
+            APEL?
+          </label>
+        </div>
         <div className="buttons">
           {[...Array(8)].map((_, index) => (
             <button key={index} onClick={() => handleButtonClick(index + 1)}>

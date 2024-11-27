@@ -243,3 +243,12 @@ label input[type="checkbox"] {
     transform: translate(-50%, 0);
   }
 }
+.select-checkbox-wrapper {
+  display: flex;
+  align-items: center; /* Vertikal sejajar tengah */
+  margin-right: 20px; /* Jarak ke elemen kanan (tombol) */
+}
+
+.select-checkbox-wrapper .form-select {
+  margin-right: 10px; /* Jarak antar select dan checkbox */
+}
