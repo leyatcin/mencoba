@@ -252,12 +252,10 @@ label input[type="checkbox"] {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 20px;
 }
 
 .buttons {
-  margin-left: 20px;
-}
-
-.form-select {
-  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
 }
