@@ -243,12 +243,25 @@ label input[type="checkbox"] {
     transform: translate(-50%, 0);
   }
 }
-.select-checkbox-wrapper {
+.controls {
   display: flex;
-  align-items: center; /* Vertikal sejajar tengah */
-  margin-right: 20px; /* Jarak ke elemen kanan (tombol) */
+  align-items: flex-start; /* Tata elemen dalam flex baris */
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.select-checkbox-wrapper .form-select {
-  margin-right: 10px; /* Jarak antar select dan checkbox */
+.select-checkbox-wrapper {
+  display: flex;
+  flex-direction: column; /* Susun elemen secara vertikal */
+  align-items: flex-start; /* Pastikan elemen dirapatkan ke kiri */
+  margin-right: 20px; /* Jarak ke elemen tombol di sebelah kanan */
+  gap: 10px; /* Jarak antar elemen */
 }
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap; /* Agar tombol bisa terbungkus jika terlalu banyak */
+  gap: 10px;
+}
+
