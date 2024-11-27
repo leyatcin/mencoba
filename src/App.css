@@ -18,57 +18,27 @@ body {
 
 .controls {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
+  align-items: center;
   margin-bottom: 20px;
-}
-
-.select-checkbox-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-right: 20px;
-  gap: 10px;
 }
 
 .checkbox-label {
   margin-right: 20px;
 }
 
-select,
-.form-select,
-.form-input,
-.form-button {
+select {
   background-color: #333;
   color: #fff;
   border: 1px solid #555;
   padding: 10px;
-  margin-bottom: 20px;
   border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-select:hover,
-.form-select:hover,
-.form-input:hover,
-.form-button:hover {
-  background-color: #555;
-  transform: scale(1.05);
-}
-
-select:active,
-.form-select:active,
-.form-input:active,
-.form-button:active {
-  background-color: #666;
-  transform: scale(0.95);
+  margin-bottom: 20px;
 }
 
 .buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  margin-left: 20px;
 }
 
 button {
@@ -133,8 +103,27 @@ label input[type="checkbox"] {
   margin-top: 20px;
 }
 
-.notification,
-.show-result {
+.form-select, .form-input, .form-button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.form-select:hover, .form-input:hover, .form-button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+
+.form-select:active, .form-input:active, .form-button:active {
+  background-color: #666;
+  transform: scale(0.95);
+}
+
+.notification {
   background-color: #444;
   color: #fff;
   padding: 10px;
@@ -148,11 +137,6 @@ label input[type="checkbox"] {
   align-items: center;
   justify-content: space-between;
   width: 300px;
-  animation: slideUp 0.8s cubic-bezier(0.25, 1.25, 0.5, 1.2);
-}
-
-
-.notification {
   animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 1s;
 }
 
@@ -173,6 +157,37 @@ label input[type="checkbox"] {
 
 .close-button:hover {
   transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes shatter {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) rotate(90deg);
+    opacity: 0;
+  }
 }
 
 .queue-container {
@@ -201,24 +216,21 @@ label input[type="checkbox"] {
   height: 40px;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+.show-result {
+  background-color: #444;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px;
+  animation: slideUp 0.8s cubic-bezier(0.25, 1.25, 0.5, 1.2);
 }
 
 @keyframes slideUp {
@@ -236,5 +248,27 @@ label input[type="checkbox"] {
   100% {
     transform: translate(-50%, 0) scale(1);
   }
+}
+
+.controls {
+  display: flex;
+  align-items: flex-start; /* Tata elemen dalam flex baris */
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.select-checkbox-wrapper {
+  display: flex;
+  flex-direction: column; /* Susun elemen secara vertikal */
+  align-items: flex-start; /* Pastikan elemen dirapatkan ke kiri */
+  margin-right: 20px; /* Jarak ke elemen tombol di sebelah kanan */
+  gap: 10px; /* Jarak antar elemen */
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap; /* Agar tombol bisa terbungkus jika terlalu banyak */
+  gap: 10px;
 }
 
