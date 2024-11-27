@@ -272,3 +272,6 @@ label input[type="checkbox"] {
   gap: 1px;
 }
 
+input[type="checkbox"] {
+  margin-left: 10px; /* Pindahkan checkbox ke kanan */
+}
