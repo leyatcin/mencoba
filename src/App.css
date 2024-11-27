@@ -269,6 +269,6 @@ label input[type="checkbox"] {
 .buttons {
   display: flex;
   flex-wrap: wrap; /* Agar tombol bisa terbungkus jika terlalu banyak */
-  gap: 10px;
+  gap: 1px;
 }
 
