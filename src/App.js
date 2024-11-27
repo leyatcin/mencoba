@@ -124,6 +124,7 @@ function App() {
       const response = await fetch(url);
       const data = await response.text();
       setShowResult(data);
+      setTimeout(() => setShowResult(""), 3000);
     } catch (error) {
       console.error("Error fetching current results:", error);
       setNotification("Gagal menampilkan hasil.");
