@@ -148,7 +148,9 @@ label input[type="checkbox"] {
   align-items: center;
   justify-content: space-between;
   width: 300px;
+  animation: slideUp 0.8s cubic-bezier(0.25, 1.25, 0.5, 1.2);
 }
+
 
 .notification {
   animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 1s;
@@ -220,12 +222,19 @@ label input[type="checkbox"] {
 }
 
 @keyframes slideUp {
-  from {
+  0% {
     opacity: 0;
-    transform: translate(-50%, 20px);
+    transform: translate(-50%, 50px) scale(0.9);
   }
-  to {
+  60% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -10px) scale(1.1);
+  }
+  80% {
+    transform: translate(-50%, 5px) scale(0.95);
+  }
+  100% {
+    transform: translate(-50%, 0) scale(1);
   }
 }
+
