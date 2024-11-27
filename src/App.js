@@ -82,13 +82,13 @@ function App() {
 
   useEffect(() => {
     let timeoutId;
-  
+
     if (!isProcessing && queue.length > 0) {
       timeoutId = setTimeout(() => {
         processQueue();
       }, 5000);
     }
-  
+
     return () => clearTimeout(timeoutId);
   }, [queue, isProcessing, processQueue]);
 
@@ -152,12 +152,16 @@ function App() {
 
   return (
     <div className="container">
-      <select onChange={(e) => setSelectedUrl(e.target.value)} value={selectedUrl} className="form-select">
-        <option value="luciurl.php">luciurl.php</option>
-        <option value="luciurl2.php">luciurl2.php</option>
-        <option value="luciurl3.php">luciurl3.php</option>
-      </select>
       <div className="controls">
+        <select
+          onChange={(e) => setSelectedUrl(e.target.value)}
+          value={selectedUrl}
+          className="form-select"
+        >
+          <option value="luciurl.php">luciurl.php</option>
+          <option value="luciurl2.php">luciurl2.php</option>
+          <option value="luciurl3.php">luciurl3.php</option>
+        </select>
         <label className="checkbox-label">
           <input
             type="checkbox"
@@ -183,14 +187,22 @@ function App() {
           ))}
         </div>
       </div>
-  
+
       <form onSubmit={handleFormSubmit} className="form">
-        <select onChange={(e) => setNomor(e.target.value)} value={nomor} className="form-select">
+        <select
+          onChange={(e) => setNomor(e.target.value)}
+          value={nomor}
+          className="form-select"
+        >
           <option value="1">Pasukan 1</option>
           <option value="2">Pasukan 2</option>
           <option value="3">Pasukan 3</option>
         </select>
-        <select onChange={(e) => setOpsi(e.target.value)} value={opsi} className="form-select">
+        <select
+          onChange={(e) => setOpsi(e.target.value)}
+          value={opsi}
+          className="form-select"
+        >
           {[...Array(8)].map((_, index) => (
             <option key={index} value={index + 1}>
               {index + 1}
@@ -205,24 +217,34 @@ function App() {
           required
           className="form-input"
         />
-        <button type="submit" className="form-button">Gas</button>
-        <button type="button" className="form-button" onClick={handleShowClick}>Show</button>
-        <button type="button" className="form-button" onClick={resetClick}>Reset</button>
+        <button type="submit" className="form-button">
+          Gas
+        </button>
+        <button type="button" className="form-button" onClick={handleShowClick}>
+          Show
+        </button>
+        <button type="button" className="form-button" onClick={resetClick}>
+          Reset
+        </button>
       </form>
       {notification && (
         <div className="notification">
           <span>{notification}</span>
-          <button className="close-button" onClick={closeNotification}>[X]</button>
+          <button className="close-button" onClick={closeNotification}>
+            [X]
+          </button>
         </div>
       )}
       {showResult && (
         <div className="show-result">
           <span>{showResult}</span>
-          <button className="close-button" onClick={closeShowResult}>[X]</button>
+          <button className="close-button" onClick={closeShowResult}>
+            [X]
+          </button>
         </div>
       )}
     </div>
-  );  
+  );
 }
 
 export default App;
