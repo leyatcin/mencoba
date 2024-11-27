@@ -243,3 +243,12 @@ label input[type="checkbox"] {
     transform: translate(-50%, 0);
   }
 }
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-select {
+  margin-bottom: 10px;
+}
